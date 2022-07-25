@@ -6,7 +6,8 @@
 using namespace std;
 
 int main() {
-    int n, m, ansS = 0, ansC = 0;
+    int n, m;
+    long long ansS = 0, ansC = 0;
     cin >> n >> m;
     for (int i=1;i<=n;i++) {
         for (int j=1;j<=m;j++) {
