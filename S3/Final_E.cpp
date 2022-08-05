@@ -5,13 +5,13 @@
 #include<string>
 using namespace std;
 
+int n;
+int f(int n) {
+    if (n<0) return 0;
+    if (n == 0) return 1;
+    return f(n-2) + f(n-3) + f(n-4) + f(n-6);
+}
 int main() {
-    int n;
     cin >> n;
-    string s;
-    int old_sum = 0;
-    for (int i=0;i<n;i++) {
-        cin >> s;
-        int x = 
-    }
+    cout << f(n);
 }

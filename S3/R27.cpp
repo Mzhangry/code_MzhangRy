@@ -6,12 +6,11 @@
 using namespace std;
 
 int main() {
-    int n, k, pell[1000010] = {1,1,2};
+    int n, a, fib[1000010] = {0,1,1};
     cin >> n;
-    for (int i=3;i<=1000000;i++) 
-        pell[i] = (pell[i-1]*2 + pell[i-2]) % 32767;
+    for (int i=3;i<=1000000;i++) fib[i] = (fib[i-1] + fib[i-2]) % 1000;
     for (int i=0;i<n;i++) {
-        cin >> k;
-        cout << pell[k] << endl;
+        cin >> a;
+        cout << fib[a] << endl;
     }
 }

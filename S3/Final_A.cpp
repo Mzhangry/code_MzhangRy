@@ -5,12 +5,11 @@
 #include<string>
 using namespace std;
 
-int a[15], n, max1 = 0, len = 0;
-int f(int c) {
-    
-}
 int main() {
-    cin >> n;n >> a[i];
-    cout << max1;
-    for (int i=0;i<n;i++) ci
+    int k = 1, n;
+    cin >> n;
+    while (k*k<=n) {
+        k++;
+    }
+    cout << k-1;
 }

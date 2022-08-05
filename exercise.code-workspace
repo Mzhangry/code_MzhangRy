@@ -10,7 +10,8 @@
 			"iostream": "cpp",
 			"type_traits": "cpp",
 			"iomanip": "cpp",
-			"string": "cpp"
+			"string": "cpp",
+			"algorithm": "cpp"
 		}
 	}
 }
