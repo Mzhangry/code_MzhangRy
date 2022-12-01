@@ -15,9 +15,9 @@ int main() {
     a[0][0] = true;
     for (int i=1;i<=n;i++) {
         for (int j=0;j<k;j++) {
-            if (a[i-1][(j+k-d[i]%k)%k] == true || a[i-1][(j+d[i]%k)%k] == true) a[i][j] = true;
+            if (a[i-1][(j+k-d[i]%k)%k] == true || a[i-1][(j+k+d[i]%k)%k] == true) a[i][j] = true;
         }
     }
-    if (a[n][0]) cout << "YES";
-    else cout << "NO";
+    if (a[n][0]) cout << "Divisible";
+    else cout << "Not divisible";
 }
