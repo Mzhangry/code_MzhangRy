@@ -62,7 +62,13 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__verbose_abort": "cpp",
+        "deque": "cpp",
+        "queue": "cpp",
+        "variant": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

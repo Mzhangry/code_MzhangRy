@@ -14,9 +14,16 @@ long long sum[100005];
 int main() {
     int n; cin >> n;
     for (int i=1;i<=n;i++) cin >> tim[i];
-    for (int i=1;i<=n;i++) sum[i] = sum[i-1] + tim[i];
     long long t; cin >> t;
-    t = t % sum[n];
+    for (int i=1;i<=n;i++) {
+        sum[i] = sum[i-1] + tim[i];
+        if (sum[i] >= t) {
+            cout << i;
+            return 0;
+        }
+    }
+    t = t % sum[n]; 
+    if (t == 0) t = sum[n];
     int id = lower_bound(sum+1, sum+n+1, t) - (sum+1);
     cout << id+1;
 }
