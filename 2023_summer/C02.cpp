@@ -33,11 +33,17 @@ void change (string s1, int& a) {
         a /= 10;
     } 
 }
-int ab(int k) { // k为已知
-    if (op == '+') return cc - k;
-    else if (op == '-') return cc + k;
-    else if (op == '*') return cc / k;
-    else if (op == '/') return cc * k;
+int solvea() {
+    if (op == '+') return cc - bb;
+    else if (op == '-') return cc + bb;
+    else if (op == '*') return cc / bb;
+    else if (op == '/') return cc * bb;
+}
+int solveb() {
+    if (op == '+') return cc - aa;
+    else if (op == '-') return aa - cc;
+    else if (op == '*') return cc / aa;
+    else if (op == '/') return aa / cc;
 }
 int main() {
     cin >> s;
@@ -55,10 +61,9 @@ int main() {
         else if (aa * bb == cc) cout << '*';
         else cout << '/';
     } else {
-        if (!aa || !bb) {
-            if (!aa) cout << ab(bb);
-            else cout << ab(aa);
-        } else {
+        if (!aa) cout << solvea();
+        else if (!bb) cout << solveb();
+        else {
             if (op == '+') cout << aa + bb;
             else if (op == '-') cout << aa - bb;
             else if (op == '*') cout << aa * bb;
