@@ -57,6 +57,8 @@ int main() {
         }
         q.push(st); f[st.first][st.second][cor[stfor]] = 0;
         for (int i=0;i<4;i++) if (f[st.first][st.second][i]) f[st.first][st.second][i] = 1;
+        vector<bool> vis[2][n+1][m+1];
+        for (int i=0;i<2;i++) for (int j=0;j<n;j++) for (int k=0;k<m;k++) vis[i][j][k].resize(4);
         while (!q.empty()) {
             P d = q.front(); q.pop();
             // if (d == ed) break;
@@ -84,85 +86,115 @@ int main() {
                 } 
             }
          ////////////////////// R ///////////////////// 
-            for (int xx = d.first-1, yy = d.second;inbound(xx, yy);xx--) {
-                if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
-                    f[xx][yy][2] = f[d.first][d.second][2] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
-                    f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[0][d.first][d.second][0]) {
+                vis[0][d.first][d.second][0] = true;
+                for (int xx = d.first-1, yy = d.second;inbound(xx, yy);xx--) {
+                    vis[0][xx][yy][0] = true;
+                    if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
+                        f[xx][yy][2] = f[d.first][d.second][2] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
+                        f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
 
-            for (int xx = d.first+1, yy = d.second;inbound(xx, yy);xx++) {
-                if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
-                    f[xx][yy][2] = f[d.first][d.second][2] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
-                    f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[0][d.first][d.second][1]) {
+                vis[0][d.first][d.second][1] = true;
+                for (int xx = d.first+1, yy = d.second;inbound(xx, yy);xx++) {
+                    vis[0][xx][yy][1] = true;
+                    if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
+                        f[xx][yy][2] = f[d.first][d.second][2] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
+                        f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
 
-            for (int xx = d.first, yy = d.second-1;inbound(xx, yy);yy--) {
-                if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
-                    f[xx][yy][2] = f[d.first][d.second][2] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
-                    f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[0][d.first][d.second][2]) {
+                vis[0][d.first][d.second][2] = true;
+                for (int xx = d.first, yy = d.second-1;inbound(xx, yy);yy--) {
+                    vis[0][xx][yy][2] = true;
+                    if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
+                        f[xx][yy][2] = f[d.first][d.second][2] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
+                        f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
-
-            for (int xx = d.first, yy = d.second+1;inbound(xx, yy);yy++) {
-                if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
-                    f[xx][yy][2] = f[d.first][d.second][2] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
-                    f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[0][d.first][d.second][3]) {
+                vis[0][d.first][d.second][3] = true;
+                for (int xx = d.first, yy = d.second+1;inbound(xx, yy);yy++) {
+                    vis[0][xx][yy][3] = true;
+                    if (f[xx][yy][2] > f[d.first][d.second][2] + 1) {
+                        f[xx][yy][2] = f[d.first][d.second][2] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][2] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][2] + 1, f[xx][yy][1]);
+                        f[xx][yy][3] = min (f[xx][yy][2] + 1, f[xx][yy][3]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
 
         ////////// B /////////
-            for (int xx = d.first-1, yy = d.second-1;inbound(xx, yy);xx--,yy--) {
-                if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
-                    f[xx][yy][3] = f[d.first][d.second][3] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
-                    f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[1][d.first][d.second][0]) {
+                vis[1][d.first][d.second][0] = true;
+                for (int xx = d.first-1, yy = d.second-1;inbound(xx, yy);xx--,yy--) {
+                    vis[1][xx][yy][0] = true;
+                    if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
+                        f[xx][yy][3] = f[d.first][d.second][3] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
+                        f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
 
-            for (int xx = d.first+1, yy = d.second+1;inbound(xx, yy);xx++,yy++) {
-                if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
-                    f[xx][yy][3] = f[d.first][d.second][3] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
-                    f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[1][d.first][d.second][1]) {
+                vis[1][d.first][d.second][1] = true;
+                for (int xx = d.first+1, yy = d.second+1;inbound(xx, yy);xx++,yy++) {
+                    vis[1][xx][yy][1] = true;
+                    if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
+                        f[xx][yy][3] = f[d.first][d.second][3] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
+                        f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
+                        q.push({xx, yy});
+                    } 
+                }
+            }
+            if (!vis[1][d.first][d.second][2]) {
+                vis[1][d.first][d.second][2] = true;
+                for (int xx = d.first-1, yy = d.second+1;inbound(xx, yy);xx--,yy++) {
+                    vis[1][xx][yy][2] = true;
+                    if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
+                        f[xx][yy][3] = f[d.first][d.second][3] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
+                        f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
 
-            for (int xx = d.first-1, yy = d.second+1;inbound(xx, yy);xx--,yy++) {
-                if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
-                    f[xx][yy][3] = f[d.first][d.second][3] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
-                    f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
-                    q.push({xx, yy});
-                } 
-            }
-
-            for (int xx = d.first+1, yy = d.second-1;inbound(xx, yy);xx++,yy--) {
-                if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
-                    f[xx][yy][3] = f[d.first][d.second][3] + 1;
-                    f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
-                    f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
-                    f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
-                    q.push({xx, yy});
-                } 
+            if (!vis[1][d.first][d.second][3]) {
+                vis[1][d.first][d.second][3] = true;
+                for (int xx = d.first+1, yy = d.second-1;inbound(xx, yy);xx++,yy--) {
+                    vis[1][xx][yy][3] = true;
+                    if (f[xx][yy][3] > f[d.first][d.second][3] + 1) {
+                        f[xx][yy][3] = f[d.first][d.second][3] + 1;
+                        f[xx][yy][0] = min (f[xx][yy][3] + 1, f[xx][yy][0]);
+                        f[xx][yy][1] = min (f[xx][yy][3] + 1, f[xx][yy][1]);
+                        f[xx][yy][2] = min (f[xx][yy][3] + 1, f[xx][yy][2]);
+                        q.push({xx, yy});
+                    } 
+                }
             }
         }
         ll ans = inf;
