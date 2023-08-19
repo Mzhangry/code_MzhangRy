@@ -19,7 +19,7 @@ bool inbound (int x, int y) {
 }
 int main() {
     cin >> w >> h >> n;
-    for (int i=0;i<w;i++) for (int j=1;j<h;j++) e[i][j] = 1;
+    for (int i=0;i<w;i++) for (int j=0;j<h;j++) e[i][j] = 1;
     for (int i=2;i<=n+1;i++) {
         int xa, xb, ya, yb; cin >> xa >> ya >> xb >> yb;
         if (xa == xb) {
