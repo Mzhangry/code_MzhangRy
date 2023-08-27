@@ -70,7 +70,8 @@
         "compare": "cpp",
         "concepts": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "__tree": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
