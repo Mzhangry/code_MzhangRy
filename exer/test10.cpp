@@ -3,8 +3,8 @@
 using namespace std;
 typedef long long ll;
 
-int n, m;
 int main() {
-    cin >> n >> m;
-    
+    const int a = 10;
+    a = 20;
+    cout << a;
 }
